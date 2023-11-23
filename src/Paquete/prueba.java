@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package Paquete;
 
 import javax.swing.*;
@@ -13,22 +10,16 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- *
- * @author Elio
- */
 public class prueba extends JPanel implements ActionListener {
-    private static final int CELL_SIZE = 40;
-    private static final int BOARD_SIZE = 40;
+    private static final int CELL_SIZE = 30;
+    private static final int BOARD_SIZE = 30;
     private ArrayList<Point> snake1, snake2;
     private Point food;
     private char direction1, direction2;
     private Timer timer;
     private Random random;
     
-    /**
-     * Creates new form prueba
-     */
+
     public prueba() {
         // initComponents();
         
@@ -154,12 +145,20 @@ public class prueba extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Snake Game");
-        prueba vibora = new prueba();
-        frame.add(vibora);
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        
+    }
+    
+     public void Iniciar (){
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                JFrame frame = new JFrame("Snake Game");
+                prueba vibora = new prueba();
+                frame.add(vibora);
+                frame.pack();
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setVisible(true);
+            }
+        });
     }
     
     /**
@@ -175,11 +174,11 @@ public class prueba extends JPanel implements ActionListener {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 620, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 620, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

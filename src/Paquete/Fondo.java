@@ -7,22 +7,22 @@ import javax.swing.JPanel;
 
 public class Fondo extends JPanel {
     Color colorFondo = Color.black;
-    int limite, division, totalDivisiones,residuo;
+    int tamaño, celdas, conjuntoCeldas, resto;
     
-    public Fondo (int limite,int totalDivisiones) {
-        this.limite = limite;
-        this.totalDivisiones = totalDivisiones;
-        this.division = limite/totalDivisiones;
-        this.residuo = limite%totalDivisiones; 
+    public Fondo (int tamaño,int conjuntoCeldas) {
+        this.tamaño = tamaño;
+        this.conjuntoCeldas = conjuntoCeldas;
+        this.celdas = tamaño/conjuntoCeldas;
+        this.resto = tamaño%conjuntoCeldas; 
     }
     
     @Override
     public void paint (Graphics pintor) {
         super.paint(pintor);
         pintor.setColor(colorFondo);
-        for (int i=0; i<totalDivisiones; i++) {
-            for(int j=0;  j<totalDivisiones ; j++) {
-                pintor.fillRect(residuo/2+i*division, residuo/2+j*division, division-1, division-1);
+        for (int i=0; i<conjuntoCeldas; i++) {
+            for(int j=0;  j<conjuntoCeldas ; j++) {
+                pintor.fillRect(resto/2+i*celdas, resto/2+j*celdas, celdas-1, celdas-1);
             }
         }
     }

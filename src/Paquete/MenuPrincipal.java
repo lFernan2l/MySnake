@@ -1,10 +1,19 @@
 
 package Paquete;
 
-public class Principal extends javax.swing.JFrame {
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import static javax.swing.UIManager.get;
 
-    public Principal() {
+public class MenuPrincipal extends javax.swing.JFrame {
+
+    MenuFondo menuFondo = new MenuFondo();
+    
+    public MenuPrincipal() {
         initComponents();
+        this.setContentPane(menuFondo);
     }
     @SuppressWarnings("unchecked")
     
@@ -20,6 +29,7 @@ public class Principal extends javax.swing.JFrame {
         Dificil = new javax.swing.JMenuItem();
         Multijugador = new javax.swing.JMenu();
         Offline = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         Informacion = new javax.swing.JMenu();
         AcercaDe = new javax.swing.JMenuItem();
 
@@ -76,7 +86,20 @@ public class Principal extends javax.swing.JFrame {
 
         Offline.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Local.png"))); // NOI18N
         Offline.setText("Offline");
+        Offline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OfflineActionPerformed(evt);
+            }
+        });
         Multijugador.add(Offline);
+
+        jMenu1.setText("Multijugador");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+        Multijugador.add(jMenu1);
 
         MenuSnake.add(Multijugador);
 
@@ -108,14 +131,14 @@ public class Principal extends javax.swing.JFrame {
     private void FacilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacilActionPerformed
         String difficult = "easy";
         Pantalla pantalla = new Pantalla(difficult);
-        pantalla.Iniciar(difficult);
+        // pantalla.Iniciar(difficult);
+        pantalla.setVisible(true);
     }//GEN-LAST:event_FacilActionPerformed
 
     private void DificilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DificilActionPerformed
         String difficult = "hard";
         Pantalla pantalla = new Pantalla(difficult);
-        pantalla.Iniciar(difficult);
-        
+        pantalla.Iniciar(difficult);    
     }//GEN-LAST:event_DificilActionPerformed
 
     private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
@@ -128,15 +151,19 @@ public class Principal extends javax.swing.JFrame {
         pantalla.Iniciar(difficult);
     }//GEN-LAST:event_MedioActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void OfflineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OfflineActionPerformed
+        prueba prueba = new prueba();
+        prueba.Iniciar();       
+    }//GEN-LAST:event_OfflineActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+       String difficult = "medium";
+        
+       //multijugador.Iniciar(difficult);
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -145,23 +172,22 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                new MenuPrincipal().setVisible(true);
             }
-        });
-        
+        });       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -176,5 +202,18 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu Multijugador;
     private javax.swing.JMenuItem Offline;
     private javax.swing.JMenu UnJugador;
+    private javax.swing.JMenu jMenu1;
     // End of variables declaration//GEN-END:variables
+    
+    class MenuFondo extends JPanel {
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/Iconos/Portada.png")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            setOpaque(false);
+            super.paint(g);
+        }        
+    }
 }

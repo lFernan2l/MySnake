@@ -3,16 +3,17 @@ package Paquete;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class Movimiento implements Runnable {
     
     Snake  snake;
-    protected int speed;
-    boolean estado=true ;
+    protected int velocidad;
+    boolean estado = true;
     
-    public Movimiento(Snake snake, int speed){
-        this.snake=snake;
-        this.speed=speed;
+    public Movimiento(Snake snake, int velocidad){
+        this.snake = snake;
+        this.velocidad = velocidad;
     }
     
     @Override
@@ -21,22 +22,22 @@ public class Movimiento implements Runnable {
             snake.avanzar();
             snake.repaint();
             try {
-                Thread.sleep(this.speed);
+                Thread.sleep(this.velocidad);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Movimiento.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }            
     }
     
-    public int getSpeed() {
-        return speed;
+    public int getVelocidad() {
+        return velocidad;
     }
     
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public void setVelocidad(int velocidad) {
+        this.velocidad = velocidad;
     }
     
     public void pausa(){
-        this.estado=false;
+        this.estado = false;
     }
 }
